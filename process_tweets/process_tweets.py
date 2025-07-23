@@ -24,7 +24,28 @@ x_train, x_test, y_train, y_test = train_test_split(x, labels, test_size=0.2, ra
 model = LogisticRegression()
 model.fit(x_train, y_train)
 
+def sentiment_output(tweet):
+    tweet_vector = vectorizer.transform([tweet])
+
+    prediction = model.predict(tweet_vector)[0]
+    sentiment_map = {
+        0: "Negative",
+        2: "Neutral",
+        4: "Positive"
+    }
+    return sentiment_map.get(prediction, "Unknown")
+
+
 y_pred = model.predict(x_test)
 accuracy = accuracy_score(y_test, y_pred)
 
-print("Accuracy: {:.2f}%".format(accuracy*100)) 
+
+
+tweetie = input("Type a tweet: ")
+result = sentiment_output(tweetie)
+
+print(f"This tweet is: {result}")
+
+print("The accuracy of this model is: {:.2f}%".format(accuracy*100))
+
+
