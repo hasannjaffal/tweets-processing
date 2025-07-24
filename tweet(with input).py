@@ -75,6 +75,6 @@ def analyze_tweet():
         "sentiment": result
     })
 
-if __name__ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True)
     
